@@ -1,0 +1,16 @@
+<h1>flight booker</h1>
+
+<%= form_with url: flights_path, method: :get do |form| %>
+
+  <%= form.label :departure_airport_id, 'departure airport' %>
+  <%= select_tag :departure_airport_id, options_for_select(@airport_options) %>
+
+  <br><br>
+  <%= form.label :arrival_airport_id, 'arrival airport' %>
+  <%= select_tag :arrival_airport_id, options_for_select(@airport_options) %>
+
+  <%= form.label :no_of_passengers, 'number of passengers' %>
+  <%= form.select :no_of_passengers, (1..4) %>
+
+  <%= form.submit 'search flights' %>
+<% end %>
