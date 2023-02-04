@@ -1,24 +1,9 @@
-# README
+# Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App allowing a user to search for and book a one-way flight.
 
-Things you may want to cover:
+Part of [The Odin Project](www.theodinproject.com) open-source curriculum.
 
-* Ruby version
+Airport data from https://ourairports.com/data/
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Flight route data from https://openflights.org/data
