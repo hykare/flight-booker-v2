@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_01_25_190900) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "airports", force: :cascade do |t|
-    t.string "code"
-    t.string "name"
-    t.string "country_code"
+    t.text "code"
+    t.text "name"
+    t.text "country_code"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", null: false
@@ -23,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_190900) do
   end
 
   create_table "flights", force: :cascade do |t|
-    t.integer "departure_airport_id"
-    t.integer "arrival_airport_id"
+    t.bigint "departure_airport_id"
+    t.bigint "arrival_airport_id"
     t.datetime "start"
     t.integer "duration"
     t.datetime "created_at", null: false
