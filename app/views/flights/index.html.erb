@@ -13,7 +13,7 @@
       <%= form.label :departure_airport_id, 'departure airport', class: "label" %>
       <div class="control">
         <div class="select">
-          <%= select_tag :departure_airport_id, options_for_select(@airport_options) %>
+          <%= select_tag :departure_airport_id, options_for_select(@airport_options), include_blank: true %>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <%= form.label :arrival_airport_id, 'arrival airport', class: "label" %>
       <div class="control">
         <div class="select">
-          <%= select_tag :arrival_airport_id, options_for_select(@airport_options), class: "select" %>
+          <%= select_tag :arrival_airport_id, options_for_select(@airport_options), include_blank: true %>
         </div>
       </div>
     </div>
