@@ -35,6 +35,16 @@
         </div>
       </div>
     </div>
+
+    <div class="field">
+      <%= form.label :date, 'date', class: "label" %>
+      <div class="control">
+        <div class="select">
+          <%= form.select :date, @dates %>
+        </div>
+      </div>
+    </div>
+
     <%= form.submit 'search flights', class: "button is-primary" %>
   <% end %>
 
