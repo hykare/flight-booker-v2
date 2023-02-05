@@ -73,3 +73,5 @@ end
 
 
 gem "dockerfile-rails", ">= 1.0.0", :group => :development
+
+gem "bulma-rails", "~> 0.9.4"
