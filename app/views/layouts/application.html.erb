@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FlightBooker</title>
+    <title>Flight Booker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,13 +9,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://kit.fontawesome.com/f005cdfe19.js" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path('plane.svg') %>
   </head>
 
   <body>
   <main>
     <%= yield %>
   </main>
-
 
   <footer class="footer">
     <div class="content has-text-centered">
