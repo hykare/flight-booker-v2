@@ -32,7 +32,6 @@ RUN bundle _${BUNDLER_VERSION}_ install && \
 
 # Copy application code
 COPY . .
-RUN sed -i '/^#!/aDir.chdir File.expand_path("..", __dir__)' /rails/bin/rails/*
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
