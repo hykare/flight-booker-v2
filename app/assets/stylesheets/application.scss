@@ -5,4 +5,19 @@ body {
   justify-content: space-between;
 }
 
+.w-full {
+  width: 100%;
+}
+
 @import "bulma";
+
+@include mobile {
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .button-confirm {
+    width: 100%;
+  }
+}
