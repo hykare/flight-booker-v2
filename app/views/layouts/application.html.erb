@@ -14,7 +14,18 @@
 
   <body>
   <main>
-    <%= yield %>
+    <div class="container is-max-desktop is-flex is-flex-direction-column is-align-items-center">
+      <a href="/" class="mt-6 mb-6">
+        <span class="icon mr-5 ml-4 is-size-1 has-text-primary">
+            <i class="fa-solid fa-plane-departure"></i>
+        </span>
+        <span class="ml-1 is-size-1 has-text-weight-bold has-text-grey-dark">flight booker</span>
+      </a>
+
+      <%= yield %>
+
+    </div>
+
   </main>
 
   <footer class="footer">
