@@ -8,6 +8,7 @@ class FlightsController < ApplicationController
     @flights = []
 
     @flights = Flight.search(flight_search_params) if params[:commit]
+    @no_of_passengers = params[:no_of_passengers]
   end
 
   private

@@ -5,13 +5,26 @@
 </div>
 
 <div>
-  <p>enter passenger information</p>
+  <p class='subtitle'>enter passenger information</p>
   <%= form_with model: @booking do |form| %>
-
     <% @no_of_passengers.to_i.times do |passenger_no| %>
-      <b><p>passenger <%= passenger_no %></p></b>
-      <p>passenger form fields</p>
-      <p>passenger form fields</p>
+
+<div class='box'>
+      <p class='subtitle'>passenger <%= passenger_no + 1 %></p>
+      <%= form.fields_for :passenger do |passenger_form| %>
+
+        <%= passenger_form.label :first_name, class: 'label' %>
+        <%= passenger_form.text_field :first_name, class: 'input'  %>
+        <%= passenger_form.label :last_name, class: 'label'  %>
+        <%= passenger_form.text_field :last_name, class: 'input' %>
+        <%= passenger_form.label :email, class: 'label'  %>
+        <%= passenger_form.text_field :email, class: 'input' %>
+        <%= passenger_form.label :phone_no, 'phone number', class: 'label'  %>
+        <%= passenger_form.text_field :phone_no, class: 'input'  %>
+
+      <% end %>
+</div>
+
       <br>
     <% end %>
 

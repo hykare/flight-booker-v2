@@ -64,7 +64,7 @@
         <%= render 'flight', flight: flight, form: f %>
       <% end %>
 
-      <%= f.hidden_field :passengers, value: 6 %>
+      <%= f.hidden_field :passengers, value: @no_of_passengers %>
 
       <%= f.submit 'continue', class: "button button-confirm is-primary is-outlined" %>
     <% end %>
