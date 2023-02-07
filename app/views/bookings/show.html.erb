@@ -1,0 +1,28 @@
+<p class="title">
+  Booking Details
+</p>
+
+<p class="subtitle has-text-centered">
+<%= @booking.flight.date_formatted %>
+<%= @booking.flight.time_formatted %>
+<br>
+<%= @booking.flight.departure_airport.name %>
+(<%= @booking.flight.departure_airport.code %>)
+-
+<%= @booking.flight.arrival_airport.name %>
+(<%= @booking.flight.arrival_airport.code %>)
+</p>
+
+
+<div class='w-full'>
+<p class='has-text-weight-bold is-size-4 mb-4 ml-1'>Passenger information</p>
+  <% @booking.passengers.each_with_index do |passenger, i| %>
+      <p class='has-text-weight-medium mb-2 ml-1'><%= "passenger #{i+1}" %></p>
+    <div class='box is-flex-direction-column is-align-items-flex-start'>
+      <p>first name: <%= passenger.first_name %></p>
+      <p>last name: <%= passenger.last_name %></p>
+      <p>email: <%= passenger.email %></p>
+      <p>phone number: <%= passenger.phone_no %></p>
+    </div>
+  <% end %>
+</div>

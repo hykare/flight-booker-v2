@@ -7,11 +7,9 @@
 <div>
   <p class='subtitle'>enter passenger information</p>
   <%= form_with model: @booking do |form| %>
-    <% @no_of_passengers.to_i.times do |passenger_no| %>
 
+      <%= form.fields_for :passengers do |passenger_form| %>
 <div class='box'>
-      <p class='subtitle'>passenger <%= passenger_no + 1 %></p>
-      <%= form.fields_for :passenger do |passenger_form| %>
 
         <%= passenger_form.label :first_name, class: 'label' %>
         <%= passenger_form.text_field :first_name, class: 'input'  %>
@@ -22,12 +20,11 @@
         <%= passenger_form.label :phone_no, 'phone number', class: 'label'  %>
         <%= passenger_form.text_field :phone_no, class: 'input'  %>
 
-      <% end %>
 </div>
+      <% end %>
 
       <br>
-    <% end %>
-
+    <%= form.hidden_field :flight_id, value: @booking.flight.id %>
     <%= form.submit 'continue', class: "button button-confirm is-primary is-outlined" %>
   <% end %>
 </div>

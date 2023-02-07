@@ -15,6 +15,10 @@ class Flight < ApplicationRecord
     "#{from} - #{to}"
   end
 
+  def date_formatted
+    start.strftime('%d %b %Y')
+  end
+
   def duration_formatted
     hours = duration / 3600
     minutes = (duration % 3600) / 60
