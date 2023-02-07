@@ -1,0 +1,16 @@
+<p>Flight 
+  <%= @booking.flight.route_codes %>
+</p>
+
+<p>enter passenger information</p>
+<%= form_with model: @booking do |form| %>
+
+  <% @no_of_passengers.to_i.times do |passenger_no| %>
+    <b><p>passenger <%= passenger_no %></p></b>
+    <p>passenger form fields</p>
+    <p>passenger form fields</p>
+    <br>
+  <% end %>
+
+  <%= form.submit 'continue', class: "button button-confirm is-primary is-outlined" %>
+<% end %>

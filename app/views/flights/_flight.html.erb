@@ -1,4 +1,7 @@
 <div class="panel-block is-flex is-justify-content-space-between p-4" style="gap: 2rem;">
+  <%= radio_button_tag 'flight', flight.id %>
+
+  <span><%= "#{flight.start.strftime('%d %b %Y')}" %></span>
   <span><%= "#{flight.time_formatted}" %></span>
   <span><%= flight.duration_formatted %></span>
   <span><%= "#{flight.route_codes}" %></span>
