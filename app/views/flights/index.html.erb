@@ -5,7 +5,7 @@
           <%= form.label :departure_airport_id, 'departure airport', class: "label" %>
           <div class="control">
             <div class="select w-full">
-              <%= select_tag :departure_airport_id, options_for_select(@departure_airport_options), include_blank: true, class: "w-full" %>
+              <%= select_tag :departure_airport_id, options_for_select(@departure_airport_options, @selected_departure_airport), include_blank: true, class: "w-full" %>
             </div>
           </div>
         </div>
@@ -14,7 +14,7 @@
           <%= form.label :arrival_airport_id, 'arrival airport', class: "label" %>
           <div class="control">
             <div class="select w-full">
-              <%= select_tag :arrival_airport_id, options_for_select(@arrival_airport_options), include_blank: true, class: "w-full" %>
+              <%= select_tag :arrival_airport_id, options_for_select(@arrival_airport_options, @selected_arrival_airport), include_blank: true, class: "w-full" %>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
             <%= form.label :no_of_passengers, 'number of passengers', class: "label" %>
             <div class="control">
               <div class="select">
-                <%= form.select :no_of_passengers, (1..4), style: "width: 15rem;" %>
+                <%= form.select :no_of_passengers, (1..4), selected: params[:no_of_passengers], style: "width: 15rem;" %>
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
             <%= form.label :date, 'date', class: "label" %>
             <div class="control">
               <div class="select">
-                <%= form.select :date, @dates %>
+                <%= form.select :date, @dates, selected: params[:date] %>
               </div>
             </div>
           </div>

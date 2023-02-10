@@ -5,10 +5,17 @@ class FlightsController < ApplicationController
     end
     @arrival_airport_options = Airport.with_scheduled_arrivals.alphabetical.map { |a| ["#{a.name} (#{a.code})", a.id] }
     @dates = Flight.pluck(:start).map { |date| date.strftime('%d %b %Y') }.uniq
-    @flights = []
 
-    @flights = Flight.search(flight_search_params) if params[:commit]
-    @no_of_passengers = params[:no_of_passengers]
+    if params[:commit]
+      @selected_departure_airport = params[:departure_airport_id]
+      @selected_arrival_airport = params[:arrival_airport_id]
+      @flights = Flight.search(flight_search_params)
+    else
+      # placeholder airport codes with connecting flights
+      @selected_departure_airport = '3706'
+      @selected_arrival_airport = '3779'
+      @flights = []
+    end
   end
 
   private
