@@ -14,7 +14,7 @@
           <%= form.label :arrival_airport_id, 'arrival airport', class: "label" %>
           <div class="control">
             <div class="select w-full">
-              <%= select_tag :arrival_airport_id, options_for_select(@arrival_airport_options, @selected_arrival_airport), include_blank: true, class: "w-full" %>
+              <%= select_tag :arrival_airport_id, options_for_select(@arrival_airport_options, params[:arrival_airport_id]), include_blank: true, class: "w-full" %>
             </div>
           </div>
         </div>

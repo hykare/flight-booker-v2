@@ -6,7 +6,7 @@ class FlightsController < ApplicationController
     @arrival_airport_options = Airport.with_scheduled_arrivals.alphabetical.map { |a| ["#{a.name} (#{a.code})", a.id] }
     @dates = Flight.pluck(:start).map { |date| date.strftime('%d %b %Y') }.uniq
 
-    set_form_values
+    set_departure_airport
     find_flights
   end
 
@@ -20,13 +20,12 @@ class FlightsController < ApplicationController
                end
   end
 
-  def set_form_values
-    if query_submitted?
-      @selected_departure_airport = params[:departure_airport_id]
-      @selected_arrival_airport = params[:arrival_airport_id]
-    else
-      @selected_departure_airport = nearest_airport || default_airport
-    end
+  def set_departure_airport
+    @selected_departure_airport = if query_submitted?
+                                    params[:departure_airport_id]
+                                  else
+                                    nearest_airport&.id || default_airport.id
+                                  end
   end
 
   def nearest_airport
@@ -34,8 +33,7 @@ class FlightsController < ApplicationController
   end
 
   def default_airport
-    # Warsaw
-    '761'
+    Airport.find_by(code: 'LHR')
   end
 
   def user_location
