@@ -10,21 +10,19 @@ class FlightsController < ApplicationController
     find_flights
   end
 
-  private
-
   def find_flights
-    @flights = if query_submitted?
-                 Flight.search(flight_search_params)
+    if query_submitted?
+      @flights = Flight.search(flight_search_params)
                else
-                 []
+      @flights = []
                end
   end
 
   def set_departure_airport
-    @selected_departure_airport = if query_submitted?
-                                    params[:departure_airport_id]
+    if query_submitted?
+      @selected_departure_airport = params[:departure_airport_id]
                                   else
-                                    nearest_airport&.id || default_airport.id
+      @selected_departure_airport = nearest_airport&.id || default_airport.id
                                   end
   end
 

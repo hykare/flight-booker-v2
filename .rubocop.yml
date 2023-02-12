@@ -1,0 +1,3 @@
+# makes methods look different based on variable name length
+Style/ConditionalAssignment:
+  Enabled: false
