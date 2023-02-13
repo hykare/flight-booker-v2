@@ -1,3 +1,23 @@
+@import "bulma";
+
+@include mobile {
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .button-confirm {
+    width: 100%;
+  }
+}
+
+@include tablet {
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -9,15 +29,13 @@ body {
   width: 100%;
 }
 
-@import "bulma";
-
-@include mobile {
-  .container {
-    padding-left: 5%;
-    padding-right: 5%;
+.radio-container {
+  &:hover {
+    background-color: $white-ter;
   }
-
-  .button-confirm {
-    width: 100%;
+  
+  // doesn't work on firefox as of 02.2023
+  &:has(input:checked) {
+    background-color: $grey-lightest;
   }
 }
