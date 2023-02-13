@@ -56,17 +56,11 @@
   <% end %>
 
   <div class="panel mb-6" style="width: 100%">
-
     <%= form_with url: new_booking_path, method: :get do |f| %>
-      <%# render @flights %>
-
       <% @flights.each do |flight| %>
         <%= render 'flight', flight: flight, form: f %>
       <% end %>
-
-      <%= f.hidden_field :passengers, value: @no_of_passengers %>
-
+      <%= f.hidden_field :passengers, value: params[:no_of_passengers] || 1 %>
       <%= f.submit 'continue', class: "button button-confirm is-primary is-outlined" %>
     <% end %>
-
   </div>
