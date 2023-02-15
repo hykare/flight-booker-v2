@@ -35,7 +35,7 @@ class FlightsController < ApplicationController
     if query_submitted?
       @selected_departure_airport = params[:departure_airport_id]
     else
-      @selected_departure_airport = nearest_airport&.id || default_airport.id
+      @selected_departure_airport = nearest_airport&.id || default_airport&.id
     end
   end
 
