@@ -29,6 +29,11 @@ body {
   width: 100%;
 }
 
+.is-sticky {
+  position: sticky;
+  top: 1.5rem;
+}
+
 .radio-container {
   &:hover {
     background-color: $white-ter;

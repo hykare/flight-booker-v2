@@ -15,6 +15,14 @@ class Flight < ApplicationRecord
     "#{from} - #{to}"
   end
 
+  def departure_time
+    start.strftime('%l:%M %p')
+  end
+
+  def arrival_time
+    (start + duration).strftime('%l:%M %p')
+  end
+
   def date_formatted
     start.strftime('%d %b %Y')
   end
@@ -34,7 +42,7 @@ class Flight < ApplicationRecord
   end
 
   def price_guesstimate_eur
-    'EUR 123'
+    '1 234,67'
   end
 
   def stops_number

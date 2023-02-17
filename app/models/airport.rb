@@ -7,4 +7,8 @@ class Airport < ApplicationRecord
   scope :alphabetical, -> { order(name: :asc) }
   scope :with_scheduled_arrivals, -> { distinct.joins(:arriving_flights) }
   scope :with_scheduled_departures, -> { distinct.joins(:departing_flights) }
+
+  def name_iata
+    "#{name} (#{code})"
+  end
 end
