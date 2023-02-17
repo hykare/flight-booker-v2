@@ -5,7 +5,7 @@
   <div class="column is-two-thirds">
 
 
-    <%= form_with model: @booking do |form| %>
+    <%= form_with model: @booking, id: 'booking_form' do |form| %>
 
         <%= form.fields_for :passengers do |passenger_form| %>
           <div class='box'>
@@ -20,9 +20,7 @@
         </div>
         <% end %>
 
-        <br>
       <%= form.hidden_field :flight_id, value: @booking.flight.id %>
-      <%= form.submit 'continue', class: "button button-confirm is-primary is-outlined" %>
     <% end %>
   </div>
 
@@ -92,7 +90,7 @@
             <p class="has-text-grey is-size-7">incl. taxes, fees & surcharges</p>
         </div>
 
-        <button class="button is-primary is-medium is-fullwidth mt-4">continue</button>
+        <button class="button is-primary is-medium is-fullwidth mt-4" form="booking_form">continue</button>
       </div>
     </div>
   </div>
