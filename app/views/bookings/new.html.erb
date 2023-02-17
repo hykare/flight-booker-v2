@@ -1,97 +1,115 @@
 
-<div class='title w-full pl-5'>enter passenger information</div>
 <div class="columns w-full">
 
   <div class="column is-two-thirds">
+    <div class='title mb-3 w-full'>enter passenger information</div>
+      <%= form_with model: @booking, id: 'booking_form' do |form| %>
+          <%= form.fields_for :passengers do |passenger_form| %>
+            <div class='panel mb-5 pb-4'>
+              <div class="panel-block has-text-weight-bold is-size-5 panel-header is-justify-content-space-between">
+                <p>
+                <span>passenger</span>
+                <span><%= passenger_form.options[:child_index] + 1 %></span>
+                </p>
+                <div class="has-text-grey-light is-size-4">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+              </div>
+              <div class="panel-block is-flex-direction-column">
+                <div class="control">
+                  <%= passenger_form.label :first_name, class: 'label' %>
+                  <%= passenger_form.text_field :first_name, class: 'input'  %>
+                </div>
 
+                <div class="control">
+                  <%= passenger_form.label :last_name, class: 'label'  %>
+                  <%= passenger_form.text_field :last_name, class: 'input' %>
+                </div>
 
-    <%= form_with model: @booking, id: 'booking_form' do |form| %>
+                <div class="control">
+                  <%= passenger_form.label :email, class: 'label'  %>
+                  <%= passenger_form.text_field :email, class: 'input' %>
+                </div>
 
-        <%= form.fields_for :passengers do |passenger_form| %>
-          <div class='box'>
-            <%= passenger_form.label :first_name, class: 'label' %>
-            <%= passenger_form.text_field :first_name, class: 'input'  %>
-            <%= passenger_form.label :last_name, class: 'label'  %>
-            <%= passenger_form.text_field :last_name, class: 'input' %>
-            <%= passenger_form.label :email, class: 'label'  %>
-            <%= passenger_form.text_field :email, class: 'input' %>
-            <%= passenger_form.label :phone_no, 'phone number', class: 'label'  %>
-            <%= passenger_form.text_field :phone_no, class: 'input'  %>
-        </div>
-        <% end %>
+                <div class="control">
+                  <%= passenger_form.label :phone_no, 'phone number', class: 'label'  %>
+                  <%= passenger_form.text_field :phone_no, class: 'input'  %>
+                </div>
+              </div>
+            </div>
+          <% end %>
 
-      <%= form.hidden_field :flight_id, value: @booking.flight.id %>
-    <% end %>
+        <%= form.hidden_field :flight_id, value: @booking.flight.id %>
+      <% end %>
+      <div class="has-text-centered">
+        <i class="fa-solid fa-circle-plus is-size-1 has-text-grey-light"></i>
+      </div>
   </div>
 
   <div class="column">
-    <div class="panel p-4 is-sticky box">
-      <p class="mb-4 panel-block">
-        <i class="has-text-grey mr-3 fa-solid fa-plane"></i>
-        <%= @flight.date_formatted %>
-      </p>
-
-      <div class="panel-block pb-4 is-flex is-justify-content-space-between">
-        <div class="has-text-centered">
-          <p class="has-text-weight-bold"><%= @flight.departure_airport.name_iata %></p>
-          <p class="has-text-grey"><%= @flight.departure_time %></p>
-        </div>
-
-        <span class="px-1"> — </span>
-
-        <div class="has-text-centered">
-          <p class="has-text-weight-bold"><%= @flight.arrival_airport.name_iata %></p>
-          <p class="has-text-grey"><%= @flight.arrival_time %></p>
-        </div>
-      </div>
-
-      <div class="panel-block is-flex-direction-column is-align-items-flex-start pb-4">
-        <p class="mb-3">
-          <i class="has-text-dark-grey fa-solid fa-user mr-2"></i>
-          <span class="ml-1 has-text-weight-medium">passengers</span>
+    <div class="is-sticky">
+      <p class="title mb-3">Your trip</p>
+      <div class="panel p-4 box">
+        <p class="mb-4 panel-block">
+          <i class="has-text-grey mr-3 fa-solid fa-plane"></i>
+          <%= @flight.date_formatted %>
         </p>
-
-        <div class="is-flex is-justify-content-space-between w-full">
-
-          <div>
-            <p>
-              <span class="mr-1">adult x </span>
-              <%= @no_of_passengers %>
-            </p>
-                    <p>
-              <i class="has-text-grey fa-solid fa-suitcase-rolling mr-3 is-size-7"></i>
-              <span><%= @no_of_passengers %></span>
-              <span>x carry-on baggage</span>
-            </p>
-            <p>
-              <i class="has-text-grey fa-solid fa-xmark mr-3 is-size-7"></i>
-              <span>no checked baggage</span>
-            </p>
-            <p>
-              <i class="has-text-grey mr-3 is-size-7 fa-solid fa-tag"></i>
-              <span>economy classic</span>
-            </p>
+        <div class="panel-block pb-4 is-flex is-justify-content-space-between">
+          <div class="has-text-centered">
+            <p class="has-text-weight-bold"><%= @flight.departure_airport.name_iata %></p>
+            <p class="has-text-grey"><%= @flight.departure_time %></p>
           </div>
-        
-          <div>
-            <p class="has-text-weight-medium"><%= @flight.price_guesstimate_eur %> EUR</p>
+          <span class="px-1"> — </span>
+          <div class="has-text-centered">
+            <p class="has-text-weight-bold"><%= @flight.arrival_airport.name_iata %></p>
+            <p class="has-text-grey"><%= @flight.arrival_time %></p>
           </div>
-
         </div>
-      </div>
-
-      <div class="panel-block is-flex-direction-column is-align-items-flex-end is-size-5 ">
-        <div class="has-text-weight-bold">
-          <span class="mr-5">Total:</span>
-          <span><%= @flight.price_guesstimate_eur %></span>
-          <span>EUR</span>
+        <div class="panel-block is-flex-direction-column is-align-items-flex-start pb-4">
+          <p class="mb-3">
+            <i class="has-text-dark-grey fa-solid fa-user mr-2"></i>
+            <span class="ml-1 has-text-weight-medium">passengers</span>
+          </p>
+          <div class="is-flex is-justify-content-space-between w-full">
+            <div>
+              <p>
+                <span class="mr-1">adult x </span>
+                <%= @no_of_passengers %>
+              </p>
+                      <p>
+                <i class="has-text-grey fa-solid fa-suitcase-rolling mr-3 is-size-7"></i>
+                <span><%= @no_of_passengers %></span>
+                <span>x carry-on baggage</span>
+              </p>
+              <p>
+                <i class="has-text-grey fa-solid fa-xmark mr-3 is-size-7"></i>
+                <span>no checked baggage</span>
+              </p>
+              <p>
+                <i class="has-text-grey mr-3 is-size-7 fa-solid fa-tag"></i>
+                <span>economy classic</span>
+              </p>
+            </div>
+      
+            <div>
+              <p class="has-text-weight-medium"><%= @flight.price_guesstimate_eur %> EUR</p>
+            </div>
+          </div>
         </div>
-        <div>
-            <p class="has-text-grey is-size-7">incl. taxes, fees & surcharges</p>
+        <div class="panel-block is-flex-direction-column is-align-items-flex-end is-size-5 ">
+          <div class="has-text-weight-bold">
+            <span class="mr-5">Total:</span>
+            <span><%= @flight.price_guesstimate_eur %></span>
+            <span>EUR</span>
+          </div>
+          <div>
+              <p class="has-text-grey is-size-7">incl. taxes, fees & surcharges</p>
+          </div>
+          <button class="button is-primary is-medium is-fullwidth mt-4" form="booking_form">continue</button>
         </div>
-
-        <button class="button is-primary is-medium is-fullwidth mt-4" form="booking_form">continue</button>
       </div>
     </div>
+
+
   </div>
 </div>
