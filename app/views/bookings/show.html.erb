@@ -1,28 +1,75 @@
-<p class="title">
+<div class='w-full'>  
+<p class="has-text-weight-bold is-size-5 mb-3">
   Booking Details
 </p>
 
-<p class="subtitle has-text-centered">
-<%= @booking.flight.date_formatted %>
-<%= @booking.flight.time_formatted %>
-<br>
-<%= @booking.flight.departure_airport.name %>
-(<%= @booking.flight.departure_airport.code %>)
--
-<%= @booking.flight.arrival_airport.name %>
-(<%= @booking.flight.arrival_airport.code %>)
-</p>
+<div class="panel box">
+  <div class="is-flex is-align-items-center is-size-4 is-size-5-mobile has-text-weight-bold" style="gap: 0.8em">
+    <span>
+      <%= @booking.flight.departure_airport.name %>
+    </span>
+    <hr class="w-full">
+    <i class="fa-solid fa-plane is-size-3 is-size-5-mobile has-text-grey-light" style="margin-right:0.2em"></i>
+    <span>
+      <%= @booking.flight.arrival_airport.name %>
+    </span>
+  </div>
+
+  <div>
+    <p><%= @booking.flight.date_formatted %></p>
+    <p><%= @booking.flight.duration %></p>
+  </div>
+
+  <div class="columns mt-0">
+    <div class="column">
+      <div class="line-left">
+        <p class="label">departure</p>
+        <p><%= @booking.flight.departure_airport.name %></p>
+        <p><%= @booking.flight.departure_airport.code %></p>
+        <p><%= @booking.flight.departure_time %></p>
+      </div>
+    </div>
 
 
-<div class='w-full'>
-<p class='has-text-weight-bold is-size-4 mb-4 ml-1'>Passenger information</p>
+    <div class="column">
+      <div class="line-left">
+        <p class="label">arrival</p>
+        <p><%= @booking.flight.arrival_airport.name %></p>
+        <p><%= @booking.flight.arrival_airport.code %></p>
+        <p><%= @booking.flight.arrival_time %></p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+  <p class='has-text-weight-bold is-size-5 mb-3'>Passenger information</p>
+
   <% @booking.passengers.each_with_index do |passenger, i| %>
-      <p class='has-text-weight-medium mb-2 ml-1'><%= "passenger #{i+1}" %></p>
-    <div class='box is-flex-direction-column is-align-items-flex-start'>
-      <p>first name: <%= passenger.first_name %></p>
-      <p>last name: <%= passenger.last_name %></p>
-      <p>email: <%= passenger.email %></p>
-      <p>phone number: <%= passenger.phone_no %></p>
+    <div class='panel box'>
+      <p class='has-text-weight-medium'><%= "passenger #{i+1}" %></p>
+      
+      <hr class="mb-2 mt-1">
+
+      <div class="columns">
+        <div class="column">
+          <p class="heading mb-0">first name</p>
+          <p><%= passenger.first_name %></p>
+        </div>
+        <div class="column">
+          <p class="heading mb-0">first name</p>
+          <p><%= passenger.first_name %></p>
+        </div>
+        <div class="column">
+          <p class="heading mb-0">email</p>
+          <p><%= passenger.email %></p>
+        </div>
+        <div class="column">
+          <p class="heading mb-0">phone number</p>
+          <p><%= passenger.phone_no %></p>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

@@ -62,3 +62,8 @@ body {
   background-color: rgba(255, 255, 255, 0);
   border: none;
 }
+
+.line-left {
+  border-left: 4px solid $grey-lighter;
+  padding-left: 0.75rem;
+}
