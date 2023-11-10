@@ -38,8 +38,11 @@
           <div class="field">
             <%= form.label :date, 'date', class: "label" %>
             <div class="control">
-              <div class="select">
-                <%= form.select :date, @dates, selected: params[:date] %>
+              <div>
+                <input type="date" name="date" id="" class="input" 
+                  min=<%= Date.today %>
+                  value=<%= Date.today %>
+                >
               </div>
             </div>
           </div>

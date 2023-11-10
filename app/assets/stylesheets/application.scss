@@ -38,7 +38,7 @@ body {
   &:hover {
     background-color: $white-ter;
   }
-  
+
   // doesn't work on firefox as of 02.2023
   &:has(input:checked) {
     background-color: $grey-lightest;
@@ -53,6 +53,7 @@ body {
   overflow: hidden;
   border: 1px solid $grey-lightest;
 }
+
 .panel-block {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -66,4 +67,9 @@ body {
 .line-left {
   border-left: 4px solid $grey-lighter;
   padding-left: 0.75rem;
+}
+
+// chrome
+::-webkit-datetime-edit-text {
+  padding: 0 0.3em;
 }
