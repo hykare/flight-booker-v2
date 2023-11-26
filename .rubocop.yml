@@ -23,5 +23,8 @@ Metrics/AbcSize:
 Style/HashSyntax:
   Enabled: false
 
+Style/SymbolArray:
+  Enabled: false
+
 Layout:
   Enabled: false
