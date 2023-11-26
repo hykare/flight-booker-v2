@@ -64,6 +64,7 @@
         <%= render 'flight', flight: flight, form: f %>
       <% end %>
       <%= f.hidden_field :passengers, value: params[:no_of_passengers] || 1 %>
+      <%= f.hidden_field :search_id, value: @search_id %>
     </div>
     <div>
       <%= f.submit 'continue', class: "button button-confirm is-primary is-large is-fullwidth" %>

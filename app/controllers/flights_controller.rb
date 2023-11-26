@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class FlightsController < ApplicationController
   def index
     @airport_options = european_airports
@@ -9,7 +11,8 @@ class FlightsController < ApplicationController
 
   def search_flights
     if query_submitted?
-      FlightOfferSearch.search(flight_search_params)
+      @search_id = SecureRandom.uuid
+      FlightOfferSearch.search(@search_id, flight_search_params)
     else
       []
     end

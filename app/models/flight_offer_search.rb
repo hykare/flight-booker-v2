@@ -2,9 +2,9 @@ require 'securerandom'
 
 class FlightOfferSearch
 
-  def self.search(search_params)
+  def self.search(search_id, search_params)
     flight_offers = AmadeusApi.get_offers(search_params)
-    save_search(flight_offers)
+    save_search(search_id, flight_offers)
 
     flights = flight_offers.map do |offer|
       offer = Offer.parse(offer)
@@ -77,8 +77,8 @@ class FlightOfferSearch
     end
   end
 
-  def self.save_search(offer_results)
-    search_id = SecureRandom.uuid
+  def self.save_search(search_id, offer_results)
+    # search_id = SecureRandom.uuid
 
     flight_offers_json = offer_results.map do |offer|
       { search_id: search_id,
