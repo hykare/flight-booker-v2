@@ -27,8 +27,6 @@ class AmadeusApi
     flight_offers = amadeus_response['data']
     return [] if flight_offers.nil?
 
-    flight_offers.map! do |offer|
-      Offer.parse(offer)
-    end
+    flight_offers
   end
 end

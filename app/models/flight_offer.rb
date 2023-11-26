@@ -1,3 +1,3 @@
-class FlightOffer < ActiveRecord
+class FlightOffer < ApplicationRecord
 
 end
