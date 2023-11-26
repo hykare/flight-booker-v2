@@ -25,7 +25,7 @@ class FlightOfferSearch
     arrival_airport = Airport.find_by(code: segments.last.arrival.iata_code)
     number_of_stops = segments.length - 1
 
-    FlightOffer.new(
+    FlightOfferViewModel.new(
       departure_airport: departure_airport,
       arrival_airport: arrival_airport,
       start: departure_time,
