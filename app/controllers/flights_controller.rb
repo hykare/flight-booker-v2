@@ -1,41 +1,33 @@
 class FlightsController < ApplicationController
   def index
-    prepare_search_form_options
-    choose_selected_departure_airport
-    search_flights
+    @airport_options = european_airports
+    @selected_departure_airport = choose_selected_departure_airport
+    @flights = search_flights
   end
 
   private
 
-  def prepare_search_form_options
-    prepare_airport_options
-    @dates = dates_with_flights
-  end
-
-  def prepare_airport_options
-    @departure_airport_options = Airport.with_scheduled_departures.alphabetical.map do |a|
-      ["#{a.name} (#{a.code})", a.id]
-    end
-    @arrival_airport_options = Airport.with_scheduled_arrivals.alphabetical.map { |a| ["#{a.name} (#{a.code})", a.id] }
-  end
-
-  def dates_with_flights
-    Flight.pluck(:start).map { |date| date.strftime('%d %b %Y') }.uniq
-  end
-
   def search_flights
     if query_submitted?
-      @flights = Flight.search(flight_search_params)
+      FlightOfferSearch.search(flight_search_params)
     else
-      @flights = []
+      []
+    end
+  end
+
+  def european_airports
+    Airport.european.alphabetical.map do |airport| 
+      label = "#{airport.name} (#{airport.code})"
+      value = airport.code
+      [label, value] 
     end
   end
 
   def choose_selected_departure_airport
     if query_submitted?
-      @selected_departure_airport = params[:departure_airport_id]
+      params[:departure_airport_code]
     else
-      @selected_departure_airport = nearest_airport&.id || default_airport&.id
+      nearest_airport&.code || default_airport&.code
     end
   end
 
@@ -59,8 +51,8 @@ class FlightsController < ApplicationController
   end
 
   def flight_search_params
-    { departure_airport: params[:departure_airport_id],
-      arrival_airport: params[:arrival_airport_id],
+    { departure_airport_code: params[:departure_airport_code],
+      arrival_airport_code: params[:arrival_airport_code],
       no_of_passengers: params[:no_of_passengers],
       date: Date.parse(params[:date]) }
   end

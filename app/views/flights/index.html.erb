@@ -2,19 +2,19 @@
 
     <div class="mb-3 is-flex is-flex-wrap-wrap" style="column-gap: 2rem;">
         <div class="field is-flex-grow-1">
-          <%= form.label :departure_airport_id, 'departure airport', class: "label" %>
+          <%= form.label :departure_airport_code, 'departure airport', class: "label" %>
           <div class="control">
             <div class="select w-full">
-              <%= select_tag :departure_airport_id, options_for_select(@departure_airport_options, @selected_departure_airport), include_blank: true, class: "w-full" %>
+              <%= select_tag :departure_airport_code, options_for_select(@airport_options, @selected_departure_airport), include_blank: true, class: "w-full" %>
             </div>
           </div>
         </div>
 
         <div class="field is-flex-grow-1">
-          <%= form.label :arrival_airport_id, 'arrival airport', class: "label" %>
+          <%= form.label :arrival_airport_code, 'arrival airport', class: "label" %>
           <div class="control">
             <div class="select w-full">
-              <%= select_tag :arrival_airport_id, options_for_select(@arrival_airport_options, params[:arrival_airport_id]), include_blank: true, class: "w-full" %>
+              <%= select_tag :arrival_airport_code, options_for_select(@airport_options, params[:arrival_airport_code]), include_blank: true, class: "w-full" %>
             </div>
           </div>
         </div>
