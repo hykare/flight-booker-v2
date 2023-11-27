@@ -12,8 +12,11 @@ options:
   parallel: false
   platform:
   postgresql: true
-  prepare: true
+  precompile:
+  prepare: false
   redis: false
   swap:
   yjit: false
-  label: {}
+  label:
+    fly_launch_runtime: rails
+  nginx: false
