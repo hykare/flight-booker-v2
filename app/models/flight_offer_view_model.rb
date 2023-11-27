@@ -15,8 +15,32 @@ class FlightOfferViewModel
     @duration = params[:duration]
     @price = params[:price]
     @number_of_stops = params[:number_of_stops]
+    @id = params[:id]
   end
 
+  def self.from_offer(offer)
+    itineraries = offer.itineraries
+    segments = itineraries.first.segments
+
+    departure_time = segments.first.departure.at
+    arrival_time = segments.last.arrival.at
+    price = offer.price.grand_total
+
+    # intermediate stops are ignored here
+    departure_airport = Airport.find_by(code: segments.first.departure.iata_code)
+    arrival_airport = Airport.find_by(code: segments.last.arrival.iata_code)
+    number_of_stops = segments.length - 1
+
+    FlightOfferViewModel.new(
+      departure_airport: departure_airport,
+      arrival_airport: arrival_airport,
+      start: departure_time,
+      duration: arrival_time - departure_time,
+      price: price,
+      number_of_stops: number_of_stops,
+      id: offer.id
+    )
+  end
 
   def time_formatted
     from = start.strftime('%l:%M %p')

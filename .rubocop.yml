@@ -28,3 +28,6 @@ Style/SymbolArray:
 
 Layout:
   Enabled: false
+
+Style/CommentAnnotation:
+  Enabled: false

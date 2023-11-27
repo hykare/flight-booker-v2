@@ -8,14 +8,10 @@ class FlightOfferSearch
 
     flights = flight_offers.map do |offer|
       offer = Offer.parse(offer)
-      check_multiple_itineraries(offer) # debug - are there ever multiple?
-      offer_to_template_model(offer)
+      # offer_to_template_model(offer)
+      FlightOfferViewModel.from_offer(offer)
     end
-
-    # flights = flight_offers.map do |offer|
-    #   json_offer_to_template_model(offer)
-    # end
-
+    
     flights.sort_by(&:start)
   end
 
@@ -44,7 +40,7 @@ class FlightOfferSearch
     )
   end
 
-  # delete? object fields are accessed in template, looks bad with raw hash
+  # todo delete? object fields are accessed in template, looks bad with raw hash
   def self.json_offer_to_template_model(offer)
     itineraries = offer['itineraries']
     segments = itineraries.first['segments']
@@ -70,16 +66,7 @@ class FlightOfferSearch
     )
   end
 
-  def self.check_multiple_itineraries(offer)
-    # when does this happen?
-    if offer.itineraries.length > 1
-      puts "MULTIPLE ITINERARIES: #{itineraries_count} Offer id: #{offer.id}"
-    end
-  end
-
   def self.save_search(search_id, offer_results)
-    # search_id = SecureRandom.uuid
-
     flight_offers_json = offer_results.map do |offer|
       { search_id: search_id,
         offer_id: offer['id'],

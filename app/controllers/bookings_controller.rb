@@ -1,9 +1,13 @@
 class BookingsController < ApplicationController
   def new
-    @flight = Flight.find params[:flight]
-    @booking = Booking.new flight: @flight
+    flight_offer = FlightOffer.find_by(search_id: params[:search_id], offer_id: params[:offer_id])
+
+    @booking = Booking.new flight_offer: flight_offer
     @no_of_passengers = params[:passengers].to_i
     @no_of_passengers.times { @booking.passengers.build }
+
+    offer_model = Offer.parse(flight_offer.offer)
+    @flight = FlightOfferViewModel.from_offer(offer_model)
   end
 
   def create

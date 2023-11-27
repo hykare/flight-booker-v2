@@ -1,9 +1,9 @@
 
   <div class="panel-block is-flex radio-container">
-    <%= radio_button_tag 'flight', flight.id %>
+    <%= radio_button_tag 'offer_id', flight.id %>
     <label for=<%= "flight_#{flight.id}" %>  class="is-flex-grow-1">
       <div class="is-flex is-justify-content-space-between p-4" style="gap: 2rem;">
-      <span> <%= flight.id %> </span>
+        <span><% flight.id %> </span>
         <span><%= "#{flight.start.strftime('%d %b %Y')}" %></span>
         <span><%= "#{flight.time_formatted}" %></span>
         <span><%= flight.duration_formatted %></span>

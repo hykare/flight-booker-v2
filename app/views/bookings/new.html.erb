@@ -2,7 +2,7 @@
 <div class="columns w-full">
 
   <div class="column is-two-thirds">
-    <div class='title mb-3 w-full'>enter passenger information</div>
+    <div class='title mb-3 w-full'>Passenger information</div>
       <%= form_with model: @booking, id: 'booking_form' do |form| %>
           <%= form.fields_for :passengers do |passenger_form| %>
             <div class='panel mb-5 pb-4'>
@@ -39,7 +39,8 @@
             </div>
           <% end %>
 
-        <%= form.hidden_field :flight_id, value: @booking.flight.id %>
+        <%= form.hidden_field :search_id, value: @booking.flight_offer.search_id %>
+        <%= form.hidden_field :offer_id, value: @booking.flight_offer.offer_id %>
       <% end %>
       <div class="has-text-centered">
         <i class="fa-solid fa-circle-plus is-size-1 has-text-grey-light"></i>
@@ -92,14 +93,14 @@
             </div>
       
             <div>
-              <p class="has-text-weight-medium"><%= @flight.price_guesstimate_eur %> EUR</p>
+              <p class="has-text-weight-medium"><%= @flight.price %> EUR</p>
             </div>
           </div>
         </div>
         <div class="panel-block is-flex-direction-column is-align-items-flex-end is-size-5 ">
           <div class="has-text-weight-bold">
             <span class="mr-5">Total:</span>
-            <span><%= @flight.price_guesstimate_eur %></span>
+            <span><%= @flight.price %></span>
             <span>EUR</span>
           </div>
           <div>
