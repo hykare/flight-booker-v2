@@ -11,7 +11,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    offer = FlightOffer.find_by(search_id: booking_params[:search_id], offer_id: booking_params[:offer_id])
+    @booking = Booking.new(flight_offer: offer)
+    @booking.passengers_attributes = booking_params[:passengers_attributes]
 
     if @booking.save
       puts 'success !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
@@ -29,7 +31,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:flight_id, :no_of_passengers,
+    params.require(:booking).permit(:offer_id, :search_id, :no_of_passengers,
                                     passengers_attributes: %i[first_name last_name email phone_no])
   end
 end
