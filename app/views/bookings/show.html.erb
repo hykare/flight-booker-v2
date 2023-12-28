@@ -1,4 +1,19 @@
 <div class='w-full'>  
+
+<% if @booking.confirmed %>
+  <div class="has-background-primary-light box is-flex is-flex-direction-column is-align-items-center">
+    <div>
+      <i class="fa-regular fa-circle-check is-size-3 has-text-grey" style="margin-right:0.2em"></i>
+      <span class="has-text-weight-bold is-size-3 mb-3 has-text-grey">Your booking has been confirmed</span>
+    </div>
+    <div class="is-size-4 has-text-grey-light">
+      <p>Thank you for using Flightbooker!</p>
+    </div>
+  </div>
+
+
+<% end %>
+
 <p class="has-text-weight-bold is-size-5 mb-3">
   Booking Details
 </p>
@@ -71,4 +86,15 @@
       </div>
     </div>
   <% end %>
+
+<% unless @booking.confirmed %>
+    <div>
+    <%= form_with url: "/order/#{@booking.id}", id: 'order_form' do |form| %>
+      <div>
+        <button class="button is-primary is-large is-fullwidth mt-4" form="order_form">Book flight</button>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 </div>

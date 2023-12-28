@@ -29,6 +29,18 @@ class BookingsController < ApplicationController
     @flight = FlightOfferViewModel.from_offer(offer_model)
   end
 
+  def order
+    @booking = Booking.find params[:booking_id]
+    # response = AmadeusApi.order(@booking)
+    
+    @booking.confirmed = true
+    @booking.save
+
+    offer_model = Offer.parse(@booking.flight_offer.offer)
+    @flight = FlightOfferViewModel.from_offer(offer_model)
+    redirect_to @booking
+  end
+
   private
 
   def booking_params
