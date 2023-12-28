@@ -16,7 +16,6 @@ class BookingsController < ApplicationController
     @booking.passengers_attributes = booking_params[:passengers_attributes]
 
     if @booking.save
-      puts 'success !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
       redirect_to @booking
     else
       print @booking.errors.full_messages
@@ -26,6 +25,8 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find params[:id]
+    offer_model = Offer.parse(@booking.flight_offer.offer)
+    @flight = FlightOfferViewModel.from_offer(offer_model)
   end
 
   private

@@ -6,37 +6,36 @@
 <div class="panel box">
   <div class="is-flex is-align-items-center is-size-4 is-size-5-mobile has-text-weight-bold" style="gap: 0.8em">
     <span>
-      <%= @booking.flight.departure_airport.name %>
+      <%= @flight.departure_airport.name %>
     </span>
     <hr class="w-full">
     <i class="fa-solid fa-plane is-size-3 is-size-5-mobile has-text-grey-light" style="margin-right:0.2em"></i>
     <span>
-      <%= @booking.flight.arrival_airport.name %>
+      <%= @flight.arrival_airport.name %>
     </span>
   </div>
 
   <div>
-    <p><%= @booking.flight.date_formatted %></p>
-    <p><%= @booking.flight.duration %></p>
+    <p><%= @flight.date_formatted %></p>
+    <p><%= @flight.duration_formatted %></p>
   </div>
 
   <div class="columns mt-0">
     <div class="column">
       <div class="line-left">
         <p class="label">departure</p>
-        <p><%= @booking.flight.departure_airport.name %></p>
-        <p><%= @booking.flight.departure_airport.code %></p>
-        <p><%= @booking.flight.departure_time %></p>
+        <p><%= @flight.departure_airport.name %></p>
+        <p><%= @flight.departure_airport.code %></p>
+        <p><%= @flight.departure_time %></p>
       </div>
     </div>
-
 
     <div class="column">
       <div class="line-left">
         <p class="label">arrival</p>
-        <p><%= @booking.flight.arrival_airport.name %></p>
-        <p><%= @booking.flight.arrival_airport.code %></p>
-        <p><%= @booking.flight.arrival_time %></p>
+        <p><%= @flight.arrival_airport.name %></p>
+        <p><%= @flight.arrival_airport.code %></p>
+        <p><%= @flight.arrival_time %></p>
       </div>
     </div>
 
@@ -48,7 +47,7 @@
 
   <% @booking.passengers.each_with_index do |passenger, i| %>
     <div class='panel box'>
-      <p class='has-text-weight-medium'><%= "passenger #{i+1}" %></p>
+      <p class='has-text-weight-medium'><%= "Passenger #{i+1}" %></p>
       
       <hr class="mb-2 mt-1">
 
@@ -58,8 +57,8 @@
           <p><%= passenger.first_name %></p>
         </div>
         <div class="column">
-          <p class="heading mb-0">first name</p>
-          <p><%= passenger.first_name %></p>
+          <p class="heading mb-0">last name</p>
+          <p><%= passenger.last_name %></p>
         </div>
         <div class="column">
           <p class="heading mb-0">email</p>
